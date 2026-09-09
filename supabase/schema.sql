@@ -50,6 +50,7 @@ create view public.budget_live_aggregates as select b.id as budget_id, b.allocat
 
 alter table public.profiles enable row level security; alter table public.council_accounts enable row level security; alter table public.tasks enable row level security;
 create function public.is_president() returns boolean language sql stable security definer set search_path = public as $$ select coalesce((select is_access_administrator from public.profiles where id = auth.uid()), false) $$;
+create policy "users can read own profile" on public.profiles for select using (id = auth.uid());
 -- Personal-task rule: only President-owned records are readable/mutable by the President. Organization rows remain shared.
 create policy "task scoped access" on public.tasks for all using ((task_scope = 'ORGANIZATION') or (task_scope = 'PERSONAL' and public.is_president() and owner_user_id = auth.uid())) with check ((task_scope = 'ORGANIZATION') or (task_scope = 'PERSONAL' and public.is_president() and owner_user_id = auth.uid()));
 create policy "president manages accounts" on public.council_accounts for all using (public.is_president()) with check (public.is_president());
