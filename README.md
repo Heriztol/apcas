@@ -13,7 +13,7 @@ A runnable Next.js App Router vertical slice of the APCAS Student Council Manage
 ## Run locally in VS Code
 
 1. Open this folder in VS Code.
-2. Copy `.env.example` to `.env.local` and paste the **Project URL** and **anon key** from Supabase.
+2. Copy `.env.example` to `.env.local` and paste the **Project URL** and **Publishable key** from Supabase.
 3. In a terminal, run `pnpm install`, then `pnpm dev`.
 4. Open `http://localhost:3000`. Try `/admin/access` using the prefilled `17123456` to exercise the duplicate ID response.
 
