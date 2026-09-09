@@ -1,14 +1,14 @@
 import type { BudgetAggregate, ProjectConnection, Task } from "@/lib/types";
 
 export const organizationTasks: Task[] = [
-  { id: "task-1", title: "Finalize Nursing Week program flow", scope: "ORGANIZATION", status: "IN_PROGRESS", priority: "HIGH", dueDate: "Aug 25, 2026", assignees: ["Miguel Santos", "Anna Reyes"], links: { project: "Nursing Week 2026", event: "Opening Program" } },
+  { id: "task-1", title: "Finalize Nursing Week program flow", scope: "ORGANIZATION", status: "IN_PROGRESS", priority: "HIGH", dueDate: "Aug 25, 2026", assignees: ["Council member", "Anna Reyes"], links: { project: "Nursing Week 2026", event: "Opening Program" } },
   { id: "task-2", title: "Confirm venue and equipment request", scope: "ORGANIZATION", status: "TODO", priority: "MEDIUM", dueDate: "Aug 24, 2026", assignees: ["Carlos Rivera"], links: { project: "Nursing Week 2026", budget: "Nursing Week Budget" } },
-  { id: "task-3", title: "Review submitted sponsor proposal", scope: "ORGANIZATION", status: "TODO", priority: "LOW", dueDate: "Aug 29, 2026", assignees: ["Miguel Santos"], links: { project: "Nursing Week 2026" } },
+  { id: "task-3", title: "Review submitted sponsor proposal", scope: "ORGANIZATION", status: "TODO", priority: "LOW", dueDate: "Aug 29, 2026", assignees: ["Council member"], links: { project: "Nursing Week 2026" } },
 ];
 
 export const personalTasks: Task[] = [
-  { id: "private-1", title: "Prepare President's Board notes", scope: "PERSONAL", status: "TODO", priority: "HIGH", dueDate: "Aug 25, 2026", assignees: [], ownerUserId: "president-1" },
-  { id: "private-2", title: "Review council account roster", scope: "PERSONAL", status: "IN_PROGRESS", priority: "MEDIUM", dueDate: "Aug 27, 2026", assignees: [], ownerUserId: "president-1" },
+  { id: "private-1", title: "Prepare President's Board notes", scope: "PERSONAL", status: "TODO", priority: "HIGH", dueDate: "Aug 25, 2026", assignees: [], ownerUserId: "current-user" },
+  { id: "private-2", title: "Review council account roster", scope: "PERSONAL", status: "IN_PROGRESS", priority: "MEDIUM", dueDate: "Aug 27, 2026", assignees: [], ownerUserId: "current-user" },
 ];
 
 // This is shaped exactly like a server-returned aggregate/RPC result. Client components only render it.

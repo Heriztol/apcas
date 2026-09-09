@@ -1,4 +1,7 @@
+"use client";
+
 import { Bell, CalendarDots, CaretRight, CheckCircle, ClockCountdown, CurrencyCircleDollar, FileText, Flag, FolderSimple, Plus, ShieldCheck, WarningCircle } from "@phosphor-icons/react/dist/ssr";
+import { useEffect, useState } from "react";
 import { Card, Badge, Button, peso } from "@/components/ui";
 
 const metrics = [
@@ -9,9 +12,11 @@ const metrics = [
 ];
 
 export function Dashboard() {
+  const [profileName, setProfileName] = useState("Council member");
+  useEffect(() => { fetch("/api/profile").then((response) => response.ok ? response.json() : null).then((result) => { if (result?.profile?.full_name) setProfileName(result.profile.full_name); }).catch(() => undefined); }, []);
   return <div className="space-y-5">
     <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-      <div><p className="text-xs font-bold uppercase tracking-[.16em] text-emerald-700">Tuesday · August 24, 2026</p><h1 className="mt-1 text-2xl font-black tracking-tight text-[#143523]">Good morning, Miguel.</h1><p className="mt-1 text-sm text-slate-500">A clear view of today&apos;s council work and connected records.</p></div>
+      <div><p className="text-xs font-bold uppercase tracking-[.16em] text-emerald-700">Tuesday · August 24, 2026</p><h1 className="mt-1 text-2xl font-black tracking-tight text-[#143523]">Good morning, {profileName}.</h1><p className="mt-1 text-sm text-slate-500">A clear view of today&apos;s council work and connected records.</p></div>
       <div className="flex gap-2"><Button><Plus size={16} weight="bold" /> Quick action</Button><button aria-label="Open notifications" className="relative rounded-lg border border-[#dce8df] bg-white p-2 text-[#0b4624]"><Bell size={18} weight="bold" /><i className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-rose-500" /></button></div>
     </div>
     <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">{metrics.map(({ icon: Icon, ...metric }) => <Card key={metric.label} className="p-4"><div className="flex items-center justify-between"><span className={`rounded-xl p-2 ${metric.tone}`}><Icon size={20} weight="bold" /></span><span className="text-2xl font-black text-[#163c28]">{metric.value}</span></div><p className="mt-3 text-xs font-bold text-[#335443]">{metric.label}</p><p className={`mt-1 text-[11px] ${metric.note.includes("overdue") ? "text-rose-600" : "text-slate-400"}`}>{metric.note}</p></Card>)}</div>
